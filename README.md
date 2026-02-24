@@ -16,5 +16,8 @@
 
 ## Architecture
 <img width="1246" height="698" alt="image" src="https://github.com/user-attachments/assets/481ce715-f4ab-492c-87be-0ebf69b862c4" />
-
+잘못 만들었다. 현재 threat-Analyzer이 step Functions안에 있다 이것은 틀린 부분이다. <br>
+threat-Analyzer이 SQS와 Step Functions사이에 위치해야하며, threat-Analyzer이 위험한지 아닌지 판단하고, 위험한 순간에만 Step Functions를 가동하여,
+Step Functions에 있는 람다 3개가 동작해야한다. 안에 있는 람다는 각각 차단/알림/기록 순이다. 
+<img width="1080" height="699" alt="image" src="https://github.com/user-attachments/assets/3f8440f9-fea7-4541-adce-813f9050df2e" />
 
