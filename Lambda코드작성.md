@@ -62,3 +62,22 @@ SNS-lambda 코드
 <br>
 이전 message는 보낼 편지를 작성했다면 publish에서는 우체국 역할을 한다. 내가 보낼려고하는 sns 주체의 주소와 어떤 메시지를 보낼지를 선택하여 보내주면 된다. 
 
+## step 6
+DB-lambda 코드<br> 
+<img width="726" height="450" alt="image" src="https://github.com/user-attachments/assets/01a0887f-86fc-4e8c-a571-60f96d1367a4" />
+<br>
+- import time, uuid 
+<br> 데이터가 언제 쌓였는지(시간),그리고 각 데이터에 고유한 이름표(ID)를 붙여주기 위해 필요한 도구<br>
+- Table = ...('Security-DB')는 DynamoDB에 만들어둔 테이블인 Security-DB를 딱 집어서 연결하는 것이다 <br>
+     table.put_item(<br>
+          Item={<br>
+               'attack_id':str(uuid.uuid4()),<br>
+               'timestamp':int(time.time()),<br>
+               'attacker_ip': ip,<br>
+               'attack_type': attack,<br>
+               'threat_level': level<br>
+          }<br>
+     )<br>
+     이부분에서 table은 테이블 장부 자체를 의미하고, .put_item은 새로운 빈 줄에 내용을 적는 부분이다. <br>
+     Item{}부분은 실제로 적을 구체적인 내용이다.
+  
