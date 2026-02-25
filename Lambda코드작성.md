@@ -43,3 +43,15 @@ is_danger이 True로 적여있다면, Step Functions를 깨워서 실제로 IP�
 테스트 결과 위험순위를 알려주고, step functiond을 자동으로 가동시킬 수 있도록 만들었다. 다음으로 Step functions을 설정할 차례이다. <br>
 
 
+## step4<br>
+lambda2 코드 수정 <br>
+<img width="387" height="69" alt="image" src="https://github.com/user-attachments/assets/265d01e5-3a09-4b09-8172-4b021d3139e9" /><br>
+일단 boto3에 있는 stepfunctions 도구를 불러오기 위해 상단에 코드 작성을 한다. <br>
+<img width="800" height="243" alt="image" src="https://github.com/user-attachments/assets/b6434ab5-1c45-480f-b2c4-23bbd4db0676" /><br>
+위험 등급일 경우 lambda2에서 step functions를 불러올 수 있게 만들어 줘야한다.<br>
+respons라는 변수에서 나의 step functions의 경로를 붙여넣어준다. <br>
+input을 사용하는 이유는 step Functions로 넘어갈때 그냥 깨우는 것이 아닌, 어떤 공격이 들어왔는지 정보를 같이 줘야한다. <br>그 정보를 담는 파라미터의 이름이 input. <br>
+json.dumps : 데이터를 전송용 문자열로 포장하는 과정 <br>
+파이썬의 딕셔너리 데이터는 메모리상에만 있는 복잡한 덩어리라 그대로 전송할 수 없다. json.dumps는 이 복잡한 데이터를 하나의 긴 글자(string)로 변환해 준다. <br>
+
+
