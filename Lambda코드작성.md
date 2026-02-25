@@ -54,4 +54,11 @@ input을 사용하는 이유는 step Functions로 넘어갈때 그냥 깨우는 
 json.dumps : 데이터를 전송용 문자열로 포장하는 과정 <br>
 파이썬의 딕셔너리 데이터는 메모리상에만 있는 복잡한 덩어리라 그대로 전송할 수 없다. json.dumps는 이 복잡한 데이터를 하나의 긴 글자(string)로 변환해 준다. <br>
 
+## step5
+SNS-lambda 코드 
+<img width="963" height="696" alt="image" src="https://github.com/user-attachments/assets/6ca8c81a-86c6-45f7-b2e0-bfc26e6445e6" />
+메일에 보낼 정보들을 꺼내와야 한다. 그렇기에 이런 lambda2에서 썻던 attacker_ip라던가 attack_type등을 여기로 불러와주면 된다.  <br>
+ <img width="587" height="224" alt="image" src="https://github.com/user-attachments/assets/107618f0-34f3-4b33-8fee-29d6d5432c45" />
+<br>
+이전 message는 보낼 편지를 작성했다면 publish에서는 우체국 역할을 한다. 내가 보낼려고하는 sns 주체의 주소와 어떤 메시지를 보낼지를 선택하여 보내주면 된다. 
 
