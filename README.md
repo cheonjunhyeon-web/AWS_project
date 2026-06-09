@@ -20,7 +20,8 @@ SQS를 통한 디커플링(Decoupling)과 Step Functions를 통한 상태 제어
 ## 🏗️ 아키텍처
 
 <p align="center">
-  <img width="1068" height="692" alt="image" src="https://github.com/user-attachments/assets/78e2fe56-9595-4492-a2be-d3158253c084" />
+<img width="1071" height="691" alt="제목 없는 다이어그램 drawio" src="https://github.com/user-attachments/assets/e633364b-74ae-4c08-8b6d-1b6c85036351" />
+
 
 </p>
 
