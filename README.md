@@ -15,8 +15,7 @@
    마지막 람다가 동작하여 리포트를 DynamoDB에 저장하고, 휴대폰으로 알림을 보낸다.
 
 ## Architecture
+<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/ef630441-5d5a-4fc6-a321-88c0abcb3c12" />
+<br>
 threat-Analyzer이 SQS와 Step Functions사이에 위치해야하며, threat-Analyzer이 위험한지 아닌지 판단하고, 위험한 순간에만 Step Functions를 가동하여,
 Step Functions에 있는 람다 3개가 동작해야한다. 안에 있는 람다는 각각 차단/알림/기록 순이다. 
-<img width="1089" height="699" alt="image" src="https://github.com/user-attachments/assets/ef630441-5d5a-4fc6-a321-88c0abcb3c12" />
-
-+ ddos공격 막아야 한다. Ddos를 막기위한 아이디어 IPS?? 
