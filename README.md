@@ -20,7 +20,8 @@ SQS를 통한 디커플링(Decoupling)과 Step Functions를 통한 상태 제어
 ## 🏗️ 아키텍처
 
 <p align="center">
-  <img src="images/architecture.png" width="800"/>
+  <img width="1068" height="692" alt="image" src="https://github.com/user-attachments/assets/78e2fe56-9595-4492-a2be-d3158253c084" />
+
 </p>
 
 시스템은 **탐지 → 분석 → 대응**의 3단계 파이프라인으로 구성된다.
