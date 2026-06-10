@@ -151,7 +151,7 @@ DDoS 트래픽을 가짜 목적지로 우회시켜 공격자는 성공했다고 
 <br>
 
 ## 📊 성과 및 결론
-<img alt="스크린샷 2026-06-10 오전 9 44 37" src="https://github.com/user-attachments/assets/e3e5fe07-77fb-4e6c-9c77-1027e5432a13" />
+<img width="45%" alt="스크린샷 2026-06-10 오전 9 44 37" src="https://github.com/user-attachments/assets/e3e5fe07-77fb-4e6c-9c77-1027e5432a13" />
 <img  width="45%" alt="스크린샷 2026-06-10 오전 9 44 19" src="https://github.com/user-attachments/assets/1e56887c-3459-4e5b-9862-f3af6039ab92" />
 
 500개 공격 샘플로 DDoS 시뮬레이션을 진행했을 때,
