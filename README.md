@@ -113,3 +113,53 @@ Security Responder Lambda가 WAF IP Set API를 호출하여 악성 IP를 동적�
 | Security Responder | `wafv2:GetIPSet` `wafv2:UpdateIPSet` |
 | DB-Logger | `dynamodb:PutItem` |
 | SNS-Notifier | `sns:Publish` |
+
+<br>
+
+## ⚠️ 기술적 한계
+
+**1. DDoS 방어의 근본적 한계**
+
+현재 시스템은 공격자 IP를 WAF IP Set에 개별적으로 추가하는 방식으로 차단한다.
+실제 DDoS 공격은 수천~수만 개의 IP에서 동시에 발생하기 때문에 IP 개별 차단만으로는 효과적인 방어가 어렵다.
+LockToken 재시도 로직으로 동시성 충돌을 해결했지만, 대규모 공격 시 WAF API 호출 제한에 도달할 수 있다.
+
+**2. 전통적 공격 패턴 중심**
+
+SQL Injection, XSS 등 전통적인 웹 공격 탐지에 집중되어 있어,
+2026년 클라우드 환경에서 증가하는 최신 공격 기법에 대한 대응이 부족하다.
+
+<br>
+
+## 🚀 향후 개선 방향
+
+**1. Honeypot 기반 트래픽 우회 전략**
+
+DDoS 트래픽을 가짜 목적지로 우회시켜 공격자는 성공했다고 착각하지만 실제 서비스는 무중단으로 유지하는 방어 전략 구현
+
+- Route 53 Health Check 연동: Threat Analyzer에서 DDoS 탐지 시 DNS 레코드를 Honeypot 서버로 변경
+- Honeypot EC2: 가짜 응답을 반환하는 경량 Nginx 서버 구축
+- 자동 복구 Lambda: 5분 후 자동으로 DNS를 원래 서버로 복구
+- 트래픽 분석: Honeypot 유입 트래픽 패턴 분석으로 공격 특성 학습
+
+**2. 최신 공격 패턴 대응**
+
+- LLM Injection 탐지: AI 모델 대상 악의적 프롬프트 삽입 공격 탐지 로직 추가
+- Event Injection 방어: S3, SNS 이벤트 조작 공격 방어를 위한 소스 검증 및 서명 확인 로직 추가
+- IAM Abuse 방지: 최소 권한 원칙에 따른 Lambda 권한 세밀 조정
+
+<br>
+
+## 📊 성과 및 결론
+<img width="1255" height="637" alt="스크린샷 2026-06-10 오전 9 44 37" src="https://github.com/user-attachments/assets/e3e5fe07-77fb-4e6c-9c77-1027e5432a13" />
+<img width="1000" height="300" alt="스크린샷 2026-06-10 오전 9 44 19" src="https://github.com/user-attachments/assets/1e56887c-3459-4e5b-9862-f3af6039ab92" />
+
+500개 공격 샘플로 DDoS 시뮬레이션을 진행했을 때,
+**500+ 요청/분을 정확히 탐지하고 WAF 차단 / 이메일 알림 / DB 저장이 병렬로 자동 실행**되는 것을 확인했다.
+
+이 프로젝트는 CWPP 앞단에 1차 방어선을 구축하여 SQL Injection, XSS 같은 전통적인 웹 공격을 사전에 필터링함으로써,
+전체 보안 인프라의 트래픽 부하를 분산하는 효과를 검증했다.
+
+- AWS Lambda 기반 서버리스 아키텍처의 동작 원리 및 이벤트 기반 실행 모델 이해
+- Step Functions Parallel 상태를 활용한 병렬 처리 오케스트레이션 구현 경험
+- LockToken 재시도 로직을 통한 WAF API 동시성 충돌 해결 경험
